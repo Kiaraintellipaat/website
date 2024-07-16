@@ -1,13 +1,6 @@
 # Use an official WordPress image as a parent image
 FROM wordpress:latest
 
-# Set up a custom plugins directory (optional)
-RUN mkdir -p /var/www/html/wp-content/plugins/custom-plugins
-
-# Copy your custom theme or plugins (optional)
-COPY custom-theme /var/www/html/wp-content/themes/custom-theme
-COPY custom-plugin /var/www/html/wp-content/plugins/custom-plugin
-
 # If you have a custom PHP.ini file, you can copy it too
 # COPY php.ini /usr/local/etc/php/conf.d/
 

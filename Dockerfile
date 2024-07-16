@@ -1,20 +1,5 @@
-# Use an official WordPress image as a parent image
-FROM wordpress:latest
-
-# Define environment variables
-ENV WORDPRESS_DB_HOST=dbhost
-ENV WORDPRESS_DB_USER=user
-ENV WORDPRESS_DB_PASSWORD=password
-ENV WORDPRESS_DB_NAME=dbname
-
-# Expose port 80 to allow incoming traffic
-EXPOSE 80
-
-# Copy wp-config-docker.php to /var/www/html/wp-config.php
-COPY wp-config-docker.php /var/www/html/wp-config.php
-
-# Set ServerName directive to suppress Apache warning
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-
-# Start Apache and WordPress
-CMD ["apache2-foreground"]
+FROM ubuntu
+RUN apt update
+RUN apt install apache2 -y
+ADD . /var/www/html/
+ENTRYPOINT apachectl -D FOREGROUND

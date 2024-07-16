@@ -13,5 +13,8 @@ EXPOSE 80
 # Copy wp-config-docker.php to /var/www/html/wp-config.php
 COPY wp-config-docker.php /var/www/html/wp-config.php
 
-# Start WordPress
+# Set ServerName directive to suppress Apache warning
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Start Apache and WordPress
 CMD ["apache2-foreground"]

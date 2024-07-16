@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  wordpress:
+    build: .
+    environment:
+      WORDPRESS_DB_HOST: dbhost
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: dbname
+    ports:
+      - "82:80"
+    networks:
+      - my-network
+
+  dbhost:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: dbname
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
